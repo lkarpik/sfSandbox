@@ -1,0 +1,11 @@
+<h1>
+
+Hello World
+
+</h1>
+
+<ul>
+    {% for name, value in blogs %}
+        <li>{{ name }}: {{ value|e }}</li>
+    {% endfor %}
+</ul>
