@@ -43,7 +43,7 @@ services:
     ports:
       # HTTP
       - target: 80
-        published: ${HTTP_PORT:-8000}
+        published: ${HTTP_PORT:-8001}
         protocol: tcp
       # HTTPS
       - target: 443
