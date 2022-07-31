@@ -19,7 +19,7 @@ class BlogController extends AbstractController
         $blogPosts = $mr->getRepository(BlogPost::class)->findAll();
         $authors = $mr->getRepository(Author::class)->findAll();
 
-        dump($blogPosts, $authors);
+        // dump($blogPosts, $authors);
         return $this->render('blog/index.html.twig', [
             // 'blogs' => [
             //     'blog_1' => 'This is blog: ' . $this->generateUrl('lucky_me', ['name' => 'Hello Word'], UrlGeneratorInterface::ABSOLUTE_PATH),
