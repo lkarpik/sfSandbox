@@ -9,7 +9,8 @@ services:
       - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line 
-      # - /srv/app/var
+      - /srv/app/var
+      # - /srv/app/vendor
     environment:
       APP_ENV: dev
 
@@ -18,11 +19,12 @@ services:
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./public:/srv/app/public:ro
 
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+  ###> symfony/mercure-bundle ###
+  ###< symfony/mercure-bundle ###
 
-###> doctrine/doctrine-bundle ###
+  ###> doctrine/doctrine-bundle ###
   database:
     ports:
       - "5432"
+
 ###< doctrine/doctrine-bundle ###
