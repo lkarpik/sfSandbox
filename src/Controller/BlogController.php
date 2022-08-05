@@ -21,8 +21,8 @@ class BlogController extends AbstractController
         $blogPosts = $mr->getRepository(BlogPost::class)->findAll();
         $authors = $mr->getRepository(Author::class)->findAll();
 
-        $users = new JSONPlaceholder(HttpClient::create());
-        dd($users->getUsers());
+        // $users = new JSONPlaceholder(HttpClient::create());
+        // dd($users->getUsers());
 
         // dump($blogPosts, $authors);
         return $this->render('blog/index.html.twig', [

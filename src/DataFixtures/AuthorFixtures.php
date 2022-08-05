@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Class\JSONPlaceholder;
 use App\Entity\Author;
+use App\Entity\BlogPost;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -22,6 +23,7 @@ class AuthorFixtures extends Fixture
         // $responce = new JSONPlaceholder(HttpClient::create());
         // $authors =  $responce->getUsers();
         $users = $this->json->getUsers();
+        $posts = $this->json->getPosts();
 
         // for ($i = 0; $i < 10; $i++) {
         //     $author = new Author();
@@ -33,6 +35,13 @@ class AuthorFixtures extends Fixture
             $author = new Author();
             $author->setName($user['name']);
             $manager->persist($author);
+            foreach ($posts as $post) {
+                $blogPost = new BlogPost();
+                $blogPost->setBody($post['body']);
+                $blogPost->setName($post['title']);
+                $blogPost->setAuthor($author);
+                $manager->persist($blogPost);
+            }
         }
 
         $manager->flush();

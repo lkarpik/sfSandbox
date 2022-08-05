@@ -15,12 +15,20 @@ class JSONPlaceholder
         $this->client = $client;
     }
 
-    public function getUsers()
+    public function getUsers(): array
     {
         $responce = $this->client->request('GET', 'https://jsonplaceholder.typicode.com/users');
         // $users = $responce->getContent();
         $users = $responce->toArray();
 
         return $users;
+    }
+
+    public function getPosts(): array
+    {
+        $responce = $this->client->request('GET', 'https://jsonplaceholder.typicode.com/posts');
+        $posts = $responce->toArray();
+
+        return $posts;
     }
 }
