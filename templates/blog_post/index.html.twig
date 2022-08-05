@@ -10,6 +10,7 @@
 		<thead>
 			<tr>
 				<th>Id</th>
+				<th>Author</th>
 				<th>Name</th>
 				<th>Body</th>
 				<th>actions</th>
@@ -19,6 +20,7 @@
 			{% for blog_post in blog_posts %}
 				<tr>
 					<td>{{ blog_post.id }}</td>
+					<td>{{ blog_post.author.name }}</td>
 					<td>{{ blog_post.name }}</td>
 					<td>{{ blog_post.body }}</td>
 					<td>

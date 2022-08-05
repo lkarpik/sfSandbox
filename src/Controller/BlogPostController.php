@@ -16,6 +16,7 @@ class BlogPostController extends AbstractController
     #[Route('/', name: 'app_blog_post_index', methods: ['GET'])]
     public function index(BlogPostRepository $blogPostRepository): Response
     {
+        // dd($blogPostRepository->findAll());
         return $this->render('blog_post/index.html.twig', [
             'blog_posts' => $blogPostRepository->findAll(),
         ]);
@@ -69,7 +70,7 @@ class BlogPostController extends AbstractController
     #[Route('/{id}', name: 'app_blog_post_delete', methods: ['POST'])]
     public function delete(Request $request, BlogPost $blogPost, BlogPostRepository $blogPostRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$blogPost->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $blogPost->getId(), $request->request->get('_token'))) {
             $blogPostRepository->remove($blogPost, true);
         }
 
