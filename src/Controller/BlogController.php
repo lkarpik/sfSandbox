@@ -23,7 +23,7 @@ class BlogController extends AbstractController
 
         // $users = new JSONPlaceholder(HttpClient::create());
         // dd($users->getUsers());
-
+        dd($_SERVER);
         // dump($blogPosts, $authors);
         return $this->render('blog/index.html.twig', [
             // 'blogs' => [

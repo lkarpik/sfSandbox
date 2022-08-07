@@ -32,14 +32,19 @@ class AuthorFixtures extends Fixture
         // }
 
         foreach ($users as $user) {
+
             $author = new Author();
             $author->setName($user['name']);
             $manager->persist($author);
+            $this->setReference('author', $author);
+
             foreach ($posts as $post) {
+
                 $blogPost = new BlogPost();
                 $blogPost->setBody($post['body']);
                 $blogPost->setName($post['title']);
-                $blogPost->setAuthor($author);
+                // $blogPost->setAuthor($author);
+                $blogPost->setAuthor($this->getReference('author'));
                 $manager->persist($blogPost);
             }
         }
