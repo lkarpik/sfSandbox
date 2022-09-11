@@ -45,6 +45,10 @@ services:
       - target: 80
         published: ${HTTP_PORT:-8001}
         protocol: tcp
+
+      - target: 80
+        published: ${HTTP_PORT:-8001}
+        protocol: udp
       # HTTPS
       - target: 443
         published: ${HTTPS_PORT:-8443}
