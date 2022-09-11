@@ -10,7 +10,8 @@ services:
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line 
       - /srv/app/var
-      - /srv/app/vendor
+      # UNCOMMENT FOR PREFORMANCE OPTIMALIZATION - BUT NEW COMPOSER PACKAGES WILL BE NOT SUPORTED IN AUTOCOMPLETION IN VS CODE
+      # - /srv/app/vendor
     environment:
       APP_ENV: dev
 
