@@ -102,6 +102,9 @@ RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
 ###< doctrine/doctrine-bundle ###
 ###< recipes ###
 
+## NODEJS ##
+RUN apk add --update nodejs npm
+## NODEJS ##
 COPY . .
 
 RUN set -eux; \
