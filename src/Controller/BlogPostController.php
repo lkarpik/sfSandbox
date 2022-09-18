@@ -20,7 +20,7 @@ class BlogPostController extends AbstractController
     public function index(BlogPostRepository $blogPostRepository, Request $request): Response
     {
         $page = 1;
-        $limit = 5;
+        $limit = 10;
 
         if ($request->query->has('page') and is_int((int) $request->query->get('page'))) {
             $page = $request->query->get('page');

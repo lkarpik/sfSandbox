@@ -41,6 +41,11 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item {{ (current_page == 1) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ path('app_blog_post_index', {'page': 1}) }}" aria-label="First">
+						<span aria-hidden="true">First</span>
+					</a>
+				</li>
+				<li class="page-item {{ (current_page == 1) ? 'disabled' : '' }}">
 					<a class="page-link" href="{{ path('app_blog_post_index', {'page': current_page-1}) }}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
@@ -61,6 +66,11 @@
 				<li class="page-item {{ (current_page == last_page) ? 'disabled' : '' }}">
 					<a class="page-link" href="{{ path('app_blog_post_index', {'page': current_page+1}) }}" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+				<li class="page-item {{ (current_page == last_page) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ path('app_blog_post_index', {'page': last_page}) }}" aria-label="Last">
+						<span aria-hidden="true">Last</span>
 					</a>
 				</li>
 			</ul>
