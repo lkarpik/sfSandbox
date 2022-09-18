@@ -36,7 +36,17 @@
 		</ul>
 
 		<a href="{{ path('app_author_index') }}">Go to author list</a>
-		{{ render_chart(chart, {'class': 'my-chart'}) }}
-		{{ render_chart(chart2, {'class': 'my-chart'}) }}
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+					{{ render_chart(chart, {'class': 'my-chart'}) }}
+
+				</div>
+				<div class="col-sm">
+					{{ render_chart(chart2, {'class': 'my-chart'}) }}
+				</div>
+			</div>
+
+		</div>
 	</div>
 {% endblock %}

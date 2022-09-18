@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\BlogPost;
 use App\Form\BlogPostType;
 use App\Repository\BlogPostRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +17,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogPostController extends AbstractController
 {
     #[Route('/', name: 'app_blog_post_index', methods: ['GET'])]
-    public function index(BlogPostRepository $blogPostRepository): Response
+    public function index(BlogPostRepository $blogPostRepository, Request $request): Response
     {
-        // dd($blogPostRepository->findAll());
+        $page = 1;
+        $limit = 5;
+
+        if ($request->query->has('page') and is_int((int) $request->query->get('page'))) {
+            $page = $request->query->get('page');
+        }
+        if ($request->query->has('limit') and is_int((int) $request->query->get('limit'))) {
+            $limit = $request->query->get('limit');
+        }
+
+        $qb = $blogPostRepository->createQueryBuilder('p')
+            ->join('p.author', 'a')
+            ->orderBy('a.name', 'ASC')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        $paginator = new Paginator($qb, true);
+
         return $this->render('blog_post/index.html.twig', [
-            'blog_posts' => $blogPostRepository->findAll(),
+            'blog_posts' => $paginator,
+            'current_page' => $page,
+            'last_page' => ceil($paginator->count() / $limit)
         ]);
     }
 

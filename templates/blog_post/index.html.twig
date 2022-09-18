@@ -5,7 +5,7 @@
 
 {% block body %}
 	<h1>BlogPost index</h1>
-
+	<a class="btn btn-primary" href="{{ path('app_blog_post_new') }}">Create new</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -35,6 +35,36 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	{# PAGINATION #}
+	{% if last_page > 1 %}
+		{% set nearbyPages = 5 %}
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item {{ (current_page == 1) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ path('app_blog_post_index', {'page': current_page-1}) }}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				{% for i in 1..last_page %}
+					{% if ((current_page - nearbyPages) - loop.index) >= 0 %}
+						{% elseif ((current_page + nearbyPages) - loop.index) <= 0 %}
+						{% else %}
 
-	<a href="{{ path('app_blog_post_new') }}">Create new</a>
+							<li class="page-item {{ (current_page == loop.index) ? 'active' : '' }}">
+								<a class="page-link" href="{{ path('app_blog_post_index', {'page': loop.index}) }}">
+									{{ loop.index }}
+								</a>
+							</li>
+
+					{% endif %}
+				{% endfor %}
+				<li class="page-item {{ (current_page == last_page) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ path('app_blog_post_index', {'page': current_page+1}) }}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	{% endif %}
+
 {% endblock %}
