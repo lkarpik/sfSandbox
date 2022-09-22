@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Author;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\AssociationConfigurator;
@@ -24,7 +25,8 @@ class AuthorCrudController extends AbstractCrudController
         return [
             IdField::new('id'),
             TextField::new('name', 'Name'),
-            AssociationField::new('blogPosts', 'Blog Posts')
+            AssociationField::new('blogPosts', 'Blog Posts'),
+
 
 
         ];
